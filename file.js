@@ -29,7 +29,11 @@ switch (option) {
       files.forEach(function (file) {
         exportPsbFiles(directoryPath, filesPath, file);
       });
-      console.log(chalk.green('Extração concluída!'));
+      console.log(
+        chalk.green(
+          'Extração concluída, espere o programa finalizar, criando novos arquivos!',
+        ),
+      );
     });
     break;
   case '2':
@@ -39,14 +43,18 @@ switch (option) {
       }
       console.log();
       const outputFolder = filesPath + '\\out';
-      console.log(outputFolder);
       fs.mkdirSync(outputFolder, { recursive: true });
       process.chdir(outputFolder);
+
       files.forEach(function (file) {
         if (!file.includes('.resx') && file.endsWith('.json'))
           importPsbFiles(directoryPath, filesPath, file);
       });
-      console.log(chalk.green('Importação concluída!'));
+      console.log(
+        chalk.green(
+          'Importação concluída,espere o programa finalizar agora, criando novos arquivos!',
+        ),
+      );
       exec('explorer.exe', [outputFolder]);
     });
     break;
